@@ -7,5 +7,5 @@ int get _port => int.parse(_argv[1],radix:10);
 
 main(){
   var node = new NodeAddress(_host, _port);
-  registerNode(node, true);
+  registerNode(node, true, '/tmp/dist_dart/${_host}_${_port}');
 }
