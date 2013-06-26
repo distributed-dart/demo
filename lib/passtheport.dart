@@ -3,15 +3,19 @@
   * move first element to end of list, and send the modified list to the first
   */
 import 'dart:isolate';
+import 'dart:async';
+import 'dart:math';
+
 main(){
-  int i = 0;
+  Random r = new Random();
   port.receive((msg,reply) {
-      print(msg.runtimeType);
-      // put the first port last
-//      var first = msg[0];
-//      var rest = msg.sublist(1);
-//      rest.add(first);
-//      print(rest);
-//      new Timer(new Duration(seconds: 1), () => first.send(rest));
+     // because we dont support sendport in list, yet 
+      List keys = msg.keys.toList()..remove('value');
+      String next = keys[r.nextInt(keys.length)];
+      SendPort _port = msg[next];
+      msg['value']++;
+
+      print("${msg['value']}: next node is: $next");
+      _port.send(msg)
     });
 }

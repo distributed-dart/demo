@@ -12,14 +12,11 @@ int get _port => int.parse(_argv[1],radix:10);
 main(){
   var master = new NodeAddress(_host, _port);
   registerNode(master, true);
-  logging = true;
-  
   String program = 'packages/demo/passtheport.dart';
   var a = spawnUriRemote(program, new NodeAddress('localhost',2000));
   var b = spawnUriRemote(program, new NodeAddress('localhost',3000));
   var c = spawnUri(program);
-//  var d = spawnUriRemote(program, new NodeAddress('localhost',4000));
-//
-  port.receive((msg,reply) => print("lkjlk"));
-  a.send(a, port.toSendPort());
+  var d = spawnUriRemote(program, new NodeAddress('localhost',4000));
+  var data = {'a': a, 'b': b, 'c' : c, 'd' : d, 'value' : 0};
+  a.send(data);
 }
