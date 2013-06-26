@@ -1,7 +1,3 @@
-/**
-  * receive a list of sendport, 
-  * move first element to end of list, and send the modified list to the first
-  */
 import 'dart:isolate';
 import 'dart:async';
 import 'dart:math';

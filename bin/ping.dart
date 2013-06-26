@@ -17,5 +17,6 @@ main(){
   String program = 'packages/demo/ping.dart';
   var local = spawnUri(program);
   var remote = spawnUriRemote(program, new NodeAddress('localhost',2000));
+  
   remote.send(sendping(local));
 }
